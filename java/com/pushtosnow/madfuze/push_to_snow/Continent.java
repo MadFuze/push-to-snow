@@ -6,28 +6,29 @@ package com.pushtosnow.madfuze.push_to_snow;
 public class Continent {
 
     private String backgroundImage = "img-src-Europe.jpg";
-    private int pusherMax = 0;
+    private String name;
+    private int maxPusher = 0;
 
-
-    public Continent(String pbackgroundImage, int pPusherMax) // Constructor with backgroud picture
+    public Continent(String continentName, String pbackgroundImage, int pPusherMax) // Constructor with background picture
     {
         backgroundImage = pbackgroundImage;
-        pusherMax = pPusherMax;
+        maxPusher = pPusherMax;
+        name = continentName;
     }
 
     public Continent(int pPousseurMax) //Constructor without background picture
     {
-        pusherMax = pPousseurMax;
+        maxPusher = pPousseurMax;
     }
 
     //Getter
 
-    public int getPusherMax()  //Return number of Pusher
+    public int getMaxPusher()  //Return number of Pusher
     {
-        return pusherMax;
+        return maxPusher;
     }
 
-    public String getbackgroundImage()    //Return the backgroud
+    public String getBackgroundImage()    //Return the backgroud
     {
         return backgroundImage;
     }
