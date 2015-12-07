@@ -17,7 +17,8 @@ import java.io.Console;
 public class GameLoop extends Thread {
 
     /** Variable booléenne pour arrêter le jeu */
-    public boolean running = false;
+    public boolean running = false, finished = false;
+    public Object mPauseLock;
 
     /**
      * durée de la pause entre chaque frame
@@ -40,6 +41,7 @@ public class GameLoop extends Thread {
     public void initGame(Context context) {
 
         this.context = context;
+        mPauseLock = new Object();
 
         running = true;
         this.screen = new GameView(context, this);
@@ -48,15 +50,24 @@ public class GameLoop extends Thread {
     /** la boucle de jeu */
     @Override
     public void run() {
-        while (this.running) {
-            this.processEvents();
-            this.update();
-            this.render();
-            try {
-                Thread.sleep(sleepTime);
-            } catch (InterruptedException e) {
+        while (!this.finished) {
+
+            synchronized (mPauseLock) {
+
+
+                while (this.running) {
+                    this.processEvents();
+                    this.update();
+                    this.render();
+                    try {
+                        Thread.sleep(sleepTime);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
             }
         }
+
     }
 
     /** Dessiner les composant du jeu sur le buffer de l'écran*/
