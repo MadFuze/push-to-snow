@@ -34,9 +34,20 @@ public class GameLoop extends Thread {
     public MotionEvent lastEvent;
 
 
-
     private Context context;
 
+    // === GAME ELEMENTS ===
+    private Game game;
+    private Shop shop;
+
+    public enum State{
+        GAME,
+        SHOP;
+    }
+
+    private State state;
+
+    //
 
     public void initGame(Context context) {
 
@@ -45,6 +56,11 @@ public class GameLoop extends Thread {
 
         running = true;
         this.screen = new GameView(context, this);
+        ///
+        game = new Game(context);
+        shop = new Shop();
+
+        state = State.GAME;
     }
 
     /** la boucle de jeu */
@@ -77,6 +93,16 @@ public class GameLoop extends Thread {
         //effacer l'écran
         this.screen.canvas.drawPaint(paint);
 
+        switch (state)
+        {
+            case GAME:
+                game.render(this.screen);
+                break;
+            case SHOP:
+                shop.render(this.screen);
+                break;
+        }
+
         this.screen.invalidate();
     }
 
@@ -85,6 +111,15 @@ public class GameLoop extends Thread {
      *  S'il sort de l'écran, on le fait changer de direction
      *  */
     public void update() {
+        switch (state)
+        {
+            case GAME:
+                game.update();
+                break;
+            case SHOP:
+                shop.update();
+                break;
+        }
     }
 
     /** Ici on va faire en sorte que lorsqu'on clique sur l'écran,
@@ -94,6 +129,16 @@ public class GameLoop extends Thread {
         if (lastEvent != null){
             int x = (int)lastEvent.getX(); // Position souris
             int y = (int)lastEvent.getY(); // Position souris
+
+            switch (state)
+            {
+                case GAME:
+                    game.processEvents(lastEvent);
+                    break;
+                case SHOP:
+                    shop.processEvents(lastEvent);
+                    break;
+            }
 
         }
         lastEvent = null;

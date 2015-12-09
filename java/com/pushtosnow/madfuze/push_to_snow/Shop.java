@@ -2,6 +2,7 @@ package com.pushtosnow.madfuze.push_to_snow;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.view.MotionEvent;
 
 /**
  * Created by Antoine on 07/12/2015.
@@ -13,10 +14,14 @@ public class Shop {
     Shop(){
     }
 
-    void render(Canvas canvas){
+    public void render(GameView screen){
 
     }
 
-    void update(){
+    public void update(){
+    }
+
+    public void processEvents(MotionEvent event) {
+
     }
 }

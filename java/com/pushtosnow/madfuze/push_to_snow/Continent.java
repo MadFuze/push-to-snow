@@ -5,13 +5,13 @@ package com.pushtosnow.madfuze.push_to_snow;
  */
 public class Continent {
 
-    private String backgroundImage = "img-src-Europe.jpg";
     private String name;
     private int maxPusher = 0;
+    private int backgroundImageID = -1;
 
-    public Continent(String continentName, String pbackgroundImage, int pPusherMax) // Constructor with background picture
+    public Continent(String continentName, int imageID, int pPusherMax) // Constructor with background picture
     {
-        backgroundImage = pbackgroundImage;
+        backgroundImageID = imageID;
         maxPusher = pPusherMax;
         name = continentName;
     }
@@ -28,9 +28,9 @@ public class Continent {
         return maxPusher;
     }
 
-    public String getBackgroundImage()    //Return the backgroud
+    public int getBackgroundImageID()    //Return the backgroud
     {
-        return backgroundImage;
+        return backgroundImageID;
     }
 
 

@@ -7,18 +7,14 @@ import android.util.Log;
 public class MainActivity extends AppCompatActivity {
 
     private GameLoop game;
-    boolean firstStart = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i("INFO", "onCreate called");
 
-        if (firstStart == false) {
-            game = new GameLoop();
-            game.initGame(this);
-            firstStart = true;
-        }
+        game = new GameLoop();
+        game.initGame(this);
 
         setContentView(game.screen);
     }
