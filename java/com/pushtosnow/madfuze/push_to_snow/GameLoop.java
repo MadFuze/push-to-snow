@@ -60,7 +60,7 @@ public class GameLoop extends Thread {
         game = new Game(context);
         shop = new Shop();
 
-        state = State.GAME;
+        state = State.SHOP; // chang this to GAME to avoid conflict
     }
 
     /** la boucle de jeu */
