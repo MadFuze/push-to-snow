@@ -56,6 +56,8 @@ public class Game {
         paint.setColor(Color.RED);
         paint.setTextSize(52);
 
+
+
         screen.canvas.drawBitmap(background, 0, 0, null);
         screen.canvas.drawText("Snowcoins : " + String.valueOf(snowcoins), 50, 200, paint);
     }
